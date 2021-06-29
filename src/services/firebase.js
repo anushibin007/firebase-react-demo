@@ -22,7 +22,7 @@ export const signInWithGoogle = () => {
 	auth.signInWithPopup(googleProvider)
 		.then((res) => {
 			console.log(res.user);
-			toast("👋 Hello " + res.user.displayName + "(" + res.user.email + ")");
+			toast("👋 Hello " + res.user.displayName + " (" + res.user.email + ")");
 		})
 		.catch((error) => {
 			toast("💔 Login failed : " + error.message);
