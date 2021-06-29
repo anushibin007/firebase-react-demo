@@ -1,5 +1,6 @@
 import firebase from "firebase/app";
 import "firebase/auth";
+import { toast } from "react-toastify";
 
 if (!firebase.apps.length) {
 	firebase.initializeApp({
@@ -20,11 +21,11 @@ const googleProvider = new firebase.auth.GoogleAuthProvider();
 export const signInWithGoogle = () => {
 	auth.signInWithPopup(googleProvider)
 		.then((res) => {
-			console.log("signing done");
 			console.log(res.user);
+			toast("👋 Hello " + res.user.displayName + "(" + res.user.email + ")");
 		})
 		.catch((error) => {
-			console.log("error occured");
-			console.log(error.message);
+			toast("💔 Login failed : " + error.message);
+			console.error(error.message);
 		});
 };
