@@ -1,8 +1,10 @@
 import "./App.css";
-import firebase from "firebase";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "react-toastify/dist/ReactToastify.css";
+import Login from "./components/Login";
 
 function App() {
-	return <div>Hello Body</div>;
+	return <Login />;
 }
 
 export default App;
