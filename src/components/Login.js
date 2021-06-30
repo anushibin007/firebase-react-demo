@@ -39,13 +39,13 @@ export default function Login() {
 		if (!authState.user) {
 			return (
 				<Button variant="danger" onClick={handleSignIn}>
-					<i className="bi bi-google"></i>&nbsp;Google Login
+					<i className="bi bi-google"></i>&nbsp;Login with Google
 				</Button>
 			);
 		} else {
 			return (
 				<Button variant="danger" onClick={signOut}>
-					<i className="bi bi-google"></i>&nbsp;Sign Out
+					<i className="bi bi-google"></i>&nbsp;Log Out
 				</Button>
 			);
 		}

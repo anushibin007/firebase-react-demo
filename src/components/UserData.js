@@ -7,7 +7,6 @@ import firebase from "firebase";
 import "firebase/firestore";
 import { Button, Col, Row, Alert } from "react-bootstrap";
 import { v4 as uuid } from "uuid";
-import { toast } from "react-toastify";
 
 const UserData = () => {
 	const [authState] = useContext(AuthContext);
@@ -20,16 +19,12 @@ const UserData = () => {
 
 	const addItemToDb = () => {
 		const newItem = faker.commerce.productName();
-		thingsDb
-			.add({
-				itemid: uuid(),
-				uid: authState.user.uid,
-				name: newItem,
-				category: "commerce.productName",
-			})
-			.then(() => {
-				toast.success(`✅ "${newItem}" added`);
-			});
+		thingsDb.add({
+			itemid: uuid(),
+			uid: authState.user.uid,
+			name: newItem,
+			category: "commerce.productName",
+		});
 	};
 
 	useEffect(async () => {
@@ -52,11 +47,13 @@ const UserData = () => {
 				<div>
 					<Col>
 						<Row>
-							<Alert variant="warning">Logged in as {authState.user.displayName}</Alert>
+							<Alert variant="success">
+								<i className="bi bi-person-check-fill"></i>&nbsp;Logged in as {authState.user.displayName}
+							</Alert>
 						</Row>
 						<Row>
 							<Button onClick={addItemToDb} autoFocus>
-								Add a Random Item
+								<i className="bi bi-plus-lg"></i>&nbsp;Add a Random Item
 							</Button>
 						</Row>
 					</Col>
@@ -64,7 +61,7 @@ const UserData = () => {
 					{dbItems &&
 						dbItems.map((item) => {
 							return (
-								<span key={item.itemid} className="badge bg-success rounded-pill m-1">
+								<span key={item.itemid} className="badge bg-success rounded-pill m-1 animate__animated animate__bounceIn">
 									{item.name}
 								</span>
 							);
