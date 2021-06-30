@@ -55,6 +55,7 @@ const UserData = () => {
 		var batch = db.batch();
 		thingsDb
 			.where("uid", "==", authState.user.uid)
+			.orderBy("createdAt")
 			.limit(howMany)
 			.get()
 			.then((queryResult) => {
