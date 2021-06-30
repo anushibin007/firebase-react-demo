@@ -24,18 +24,22 @@ const UserData = () => {
 			uid: authState.user.uid,
 			name: newItem,
 			category: "commerce.productName",
+			createdAt: firebase.firestore.FieldValue.serverTimestamp(),
 		});
 	};
 
 	useEffect(async () => {
 		let unsubscribe;
 		if (authState.user) {
-			unsubscribe = thingsDb.where("uid", "==", authState.user.uid).onSnapshot((querySnapshot) => {
-				const items = querySnapshot.docs.map((doc) => {
-					return doc.data();
+			unsubscribe = thingsDb
+				.where("uid", "==", authState.user.uid)
+				.orderBy("createdAt")
+				.onSnapshot((querySnapshot) => {
+					const items = querySnapshot.docs.map((doc) => {
+						return doc.data();
+					});
+					setDbItems(items);
 				});
-				setDbItems(items);
-			});
 		} else {
 			unsubscribe && unsubscribe();
 		}
