@@ -51,12 +51,15 @@ const UserData = () => {
 				<div>
 					<p>Logged in as {authState.user.displayName}</p>
 					<Button onClick={addItemToDb}>Add a Random Item</Button>
-					<ul>
-						{dbItems &&
-							dbItems.map((item) => {
-								return <li key={item.itemid}>{item.name}</li>;
-							})}
-					</ul>
+					<br />
+					{dbItems &&
+						dbItems.map((item) => {
+							return (
+								<span key={item.itemid} className="badge bg-success rounded-pill m-1">
+									{item.name}
+								</span>
+							);
+						})}
 				</div>
 			);
 		}
