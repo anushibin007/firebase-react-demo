@@ -1,26 +1,26 @@
 {
   "files": {
     "main.css": "/firebase-react-demo/static/css/main.9d5b29c0.chunk.css",
-    "main.js": "/firebase-react-demo/static/js/main.a4d61a3f.chunk.js",
-    "main.js.map": "/firebase-react-demo/static/js/main.a4d61a3f.chunk.js.map",
-    "runtime-main.js": "/firebase-react-demo/static/js/runtime-main.f0adb0c3.js",
-    "runtime-main.js.map": "/firebase-react-demo/static/js/runtime-main.f0adb0c3.js.map",
+    "main.js": "/firebase-react-demo/static/js/main.9f27ea95.chunk.js",
+    "main.js.map": "/firebase-react-demo/static/js/main.9f27ea95.chunk.js.map",
+    "runtime-main.js": "/firebase-react-demo/static/js/runtime-main.df28673a.js",
+    "runtime-main.js.map": "/firebase-react-demo/static/js/runtime-main.df28673a.js.map",
     "static/css/2.36072602.chunk.css": "/firebase-react-demo/static/css/2.36072602.chunk.css",
-    "static/js/2.8849e333.chunk.js": "/firebase-react-demo/static/js/2.8849e333.chunk.js",
-    "static/js/2.8849e333.chunk.js.map": "/firebase-react-demo/static/js/2.8849e333.chunk.js.map",
-    "static/js/3.d1ccf11f.chunk.js": "/firebase-react-demo/static/js/3.d1ccf11f.chunk.js",
-    "static/js/3.d1ccf11f.chunk.js.map": "/firebase-react-demo/static/js/3.d1ccf11f.chunk.js.map",
+    "static/js/2.ac612c0a.chunk.js": "/firebase-react-demo/static/js/2.ac612c0a.chunk.js",
+    "static/js/2.ac612c0a.chunk.js.map": "/firebase-react-demo/static/js/2.ac612c0a.chunk.js.map",
+    "static/js/3.a228bb41.chunk.js": "/firebase-react-demo/static/js/3.a228bb41.chunk.js",
+    "static/js/3.a228bb41.chunk.js.map": "/firebase-react-demo/static/js/3.a228bb41.chunk.js.map",
     "index.html": "/firebase-react-demo/index.html",
     "static/css/2.36072602.chunk.css.map": "/firebase-react-demo/static/css/2.36072602.chunk.css.map",
     "static/css/main.9d5b29c0.chunk.css.map": "/firebase-react-demo/static/css/main.9d5b29c0.chunk.css.map",
-    "static/js/2.8849e333.chunk.js.LICENSE.txt": "/firebase-react-demo/static/js/2.8849e333.chunk.js.LICENSE.txt",
+    "static/js/2.ac612c0a.chunk.js.LICENSE.txt": "/firebase-react-demo/static/js/2.ac612c0a.chunk.js.LICENSE.txt",
     "static/media/bootstrap-icons.css": "/firebase-react-demo/static/media/bootstrap-icons.dfd0ea12.woff2"
   },
   "entrypoints": [
-    "static/js/runtime-main.f0adb0c3.js",
+    "static/js/runtime-main.df28673a.js",
     "static/css/2.36072602.chunk.css",
-    "static/js/2.8849e333.chunk.js",
+    "static/js/2.ac612c0a.chunk.js",
     "static/css/main.9d5b29c0.chunk.css",
-    "static/js/main.a4d61a3f.chunk.js"
+    "static/js/main.9f27ea95.chunk.js"
   ]
 }
