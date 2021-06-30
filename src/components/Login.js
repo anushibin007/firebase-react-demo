@@ -31,8 +31,10 @@ export default function Login() {
 	};
 
 	const signOut = () => {
-		auth.signOut();
-		setAuthState({ ...authState, user: undefined });
+		auth.signOut().then(() => {
+			setAuthState({ ...authState, user: undefined });
+			toast("👋 See you soon");
+		});
 	};
 
 	const renderLoginOrLogout = () => {

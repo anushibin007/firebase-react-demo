@@ -18,7 +18,7 @@ const UserData = () => {
 
 	const thingsDb = db.collection("things");
 
-	const addItemToDb = (howMany) => {
+	const addItemToDb = async (howMany) => {
 		if (!howMany) howMany = 1;
 		const newItem = faker.commerce.productName();
 		var batch = db.batch();
@@ -32,18 +32,25 @@ const UserData = () => {
 				createdAt: firebase.firestore.FieldValue.serverTimestamp(),
 			});
 		}
-		batch.commit();
+		batch
+			.commit()
+			.then(() => {
+				toast.success(`✅ Added ${howMany} new random item(s)`);
+			})
+			.catch((err) => {
+				toast.error(`Error: ${err}`);
+			});
 	};
 
-	const addOneItemToDb = () => {
+	const addOneItemToDb = async () => {
 		addItemToDb(1);
 	};
 
-	const addTenItemsToDb = () => {
+	const addTenItemsToDb = async () => {
 		addItemToDb(10);
 	};
 
-	const deleteFromDb = (howMany) => {
+	const deleteFromDb = async (howMany) => {
 		if (!howMany) howMany = 1;
 		var batch = db.batch();
 		thingsDb
@@ -56,11 +63,18 @@ const UserData = () => {
 				});
 			})
 			.then(() => {
-				batch.commit();
+				batch
+					.commit()
+					.then(() => {
+						toast.success(`🗑 Deleted ${howMany} items`);
+					})
+					.catch((err) => {
+						toast.error(`Error: ${err}`);
+					});
 			});
 	};
 
-	const deleteFiftyFromDb = () => {
+	const deleteFiftyFromDb = async () => {
 		deleteFromDb(50);
 	};
 
