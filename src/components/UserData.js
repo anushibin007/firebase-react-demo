@@ -50,7 +50,9 @@ const UserData = () => {
 			return (
 				<div>
 					<p>Logged in as {authState.user.displayName}</p>
-					<Button onClick={addItemToDb}>Add a Random Item</Button>
+					<Button onClick={addItemToDb} autoFocus>
+						Add a Random Item
+					</Button>
 					<br />
 					{dbItems &&
 						dbItems.map((item) => {
