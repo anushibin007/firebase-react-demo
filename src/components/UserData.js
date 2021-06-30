@@ -7,6 +7,7 @@ import firebase from "firebase";
 import "firebase/firestore";
 import { Button, Col, Row, Alert } from "react-bootstrap";
 import { v4 as uuid } from "uuid";
+import { toast } from "react-toastify";
 
 const UserData = () => {
 	const [authState] = useContext(AuthContext);
@@ -17,33 +18,61 @@ const UserData = () => {
 
 	const thingsDb = db.collection("things");
 
-	const addItemToDb = () => {
+	const addItemToDb = (howMany) => {
+		if (!howMany) howMany = 1;
 		const newItem = faker.commerce.productName();
-		thingsDb.add({
-			itemid: uuid(),
-			uid: authState.user.uid,
-			name: newItem,
-			category: "commerce.productName",
-			createdAt: firebase.firestore.FieldValue.serverTimestamp(),
-		});
+		var batch = db.batch();
+		for (var i = 0; i < howMany; i++) {
+			var thingsDbRef = thingsDb.doc();
+			batch.set(thingsDbRef, {
+				itemid: uuid(),
+				uid: authState.user.uid,
+				name: newItem,
+				category: "commerce.productName",
+				createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+			});
+		}
+		batch.commit();
+	};
+
+	const addOneItemToDb = () => {
+		addItemToDb(1);
 	};
 
 	const addTenItemsToDb = () => {
-		for (var i = 0; i < 10; i++) {
-			addItemToDb();
-		}
+		addItemToDb(10);
 	};
 
-	const deleteAllFromDb = () => {
+	const deleteFromDb = (howMany) => {
+		if (!howMany) howMany = 1;
+		var batch = db.batch();
 		thingsDb
 			.where("uid", "==", authState.user.uid)
+			.limit(howMany)
 			.get()
 			.then((queryResult) => {
 				queryResult.forEach((doc) => {
-					doc.ref.delete();
+					batch.delete(doc.ref);
 				});
+			})
+			.then(() => {
+				batch.commit();
 			});
 	};
+
+	const deleteFiftyFromDb = () => {
+		deleteFromDb(50);
+	};
+
+	/*	const deleteAllFromDb = () => {
+		for (var i = dbItems.length; i >= 0 || i + 50 > 0; ) {
+			if (!waitForMe) {
+				toast(i);
+				deleteFromDb();
+				i -= 50;
+			}
+		}
+	};*/
 
 	useEffect(async () => {
 		let unsubscribe;
@@ -73,7 +102,7 @@ const UserData = () => {
 							</Alert>
 						</Row>
 						<Row>
-							<Button onClick={addItemToDb} autoFocus>
+							<Button onClick={addOneItemToDb} autoFocus>
 								<i className="bi bi-plus-lg"></i>&nbsp;Add a Random Item
 							</Button>
 						</Row>
@@ -83,12 +112,13 @@ const UserData = () => {
 							</Button>
 						</Row>
 						<Row>
-							<Button onClick={deleteAllFromDb} variant="warning">
-								<i className="bi bi-trash"></i>&nbsp;Delete all Items
+							<Button onClick={deleteFiftyFromDb} variant="warning">
+								<i className="bi bi-trash"></i>&nbsp;Delete 50 Items
 							</Button>
 						</Row>
 					</Col>
 					<br />
+					<h3>Total {dbItems && dbItems.length} items</h3>
 					{dbItems &&
 						dbItems.map((item) => {
 							return (
