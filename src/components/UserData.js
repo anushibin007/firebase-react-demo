@@ -28,6 +28,17 @@ const UserData = () => {
 		});
 	};
 
+	const deleteAllFromDb = () => {
+		thingsDb
+			.where("uid", "==", authState.user.uid)
+			.get()
+			.then((queryResult) => {
+				queryResult.forEach((doc) => {
+					doc.ref.delete();
+				});
+			});
+	};
+
 	useEffect(async () => {
 		let unsubscribe;
 		if (authState.user) {
@@ -58,6 +69,11 @@ const UserData = () => {
 						<Row>
 							<Button onClick={addItemToDb} autoFocus>
 								<i className="bi bi-plus-lg"></i>&nbsp;Add a Random Item
+							</Button>
+						</Row>
+						<Row>
+							<Button onClick={deleteAllFromDb} variant="warning">
+								<i className="bi bi-trash"></i>&nbsp;Delete all Items
 							</Button>
 						</Row>
 					</Col>
