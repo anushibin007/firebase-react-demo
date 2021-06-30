@@ -121,7 +121,7 @@ const UserData = () => {
 							</Button>
 						</Row>
 						<Row>
-							<Button onClick={addTenItemsToDb} autoFocus>
+							<Button onClick={addTenItemsToDb}>
 								<i className="bi bi-plus-lg"></i>&nbsp;Add 10 Random Items
 							</Button>
 						</Row>
