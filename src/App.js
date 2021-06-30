@@ -6,11 +6,14 @@ import Login from "./components/Login";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Container } from "react-bootstrap";
+import { AuthProvider } from "./context/AuthContext";
 
 function App() {
 	return (
 		<Container>
-			<Login />
+			<AuthProvider>
+				<Login />
+			</AuthProvider>
 			<ToastContainer position="bottom-right" />
 		</Container>
 	);
