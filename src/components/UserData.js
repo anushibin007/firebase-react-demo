@@ -28,6 +28,12 @@ const UserData = () => {
 		});
 	};
 
+	const addTenItemsToDb = () => {
+		for (var i = 0; i < 10; i++) {
+			addItemToDb();
+		}
+	};
+
 	const deleteAllFromDb = () => {
 		thingsDb
 			.where("uid", "==", authState.user.uid)
@@ -69,6 +75,11 @@ const UserData = () => {
 						<Row>
 							<Button onClick={addItemToDb} autoFocus>
 								<i className="bi bi-plus-lg"></i>&nbsp;Add a Random Item
+							</Button>
+						</Row>
+						<Row>
+							<Button onClick={addTenItemsToDb} autoFocus>
+								<i className="bi bi-plus-lg"></i>&nbsp;Add 10 Random Items
 							</Button>
 						</Row>
 						<Row>
