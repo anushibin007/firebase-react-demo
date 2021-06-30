@@ -20,9 +20,9 @@ const UserData = () => {
 
 	const addItemToDb = async (howMany) => {
 		if (!howMany) howMany = 1;
-		const newItem = faker.commerce.productName();
 		var batch = db.batch();
 		for (var i = 0; i < howMany; i++) {
+			const newItem = faker.commerce.productName();
 			var thingsDbRef = thingsDb.doc();
 			batch.set(thingsDbRef, {
 				itemid: uuid(),
