@@ -25,6 +25,7 @@ const UserData = () => {
 				itemid: uuid(),
 				uid: authState.user.uid,
 				name: newItem,
+				category: "commerce.productName",
 			})
 			.then(() => {
 				toast.success(`✅ "${newItem}" added`);
