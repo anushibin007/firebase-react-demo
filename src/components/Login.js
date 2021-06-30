@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Button } from "react-bootstrap";
+import { Button, Col, Row } from "react-bootstrap";
 import { AuthContext, auth } from "../context/AuthContext";
 import { toast } from "react-toastify";
 import firebase from "firebase/app";
@@ -38,22 +38,24 @@ export default function Login() {
 	const renderLoginOrLogout = () => {
 		if (!authState.user) {
 			return (
-				<div className="login-buttons">
-					<Button variant="danger" onClick={handleSignIn}>
-						<i className="bi bi-google"></i>&nbsp;Google Login
-					</Button>
-				</div>
+				<Button variant="danger" onClick={handleSignIn}>
+					<i className="bi bi-google"></i>&nbsp;Google Login
+				</Button>
 			);
 		} else {
 			return (
-				<div className="login-buttons">
-					<Button variant="danger" onClick={signOut}>
-						<i className="bi bi-google"></i>&nbsp;Sign Out
-					</Button>
-				</div>
+				<Button variant="danger" onClick={signOut}>
+					<i className="bi bi-google"></i>&nbsp;Sign Out
+				</Button>
 			);
 		}
 	};
 
-	return <React.Fragment>{renderLoginOrLogout()}</React.Fragment>;
+	return (
+		<React.Fragment>
+			<Col>
+				<Row>{renderLoginOrLogout()}</Row>
+			</Col>
+		</React.Fragment>
+	);
 }

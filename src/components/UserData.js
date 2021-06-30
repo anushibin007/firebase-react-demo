@@ -5,7 +5,7 @@ import { AuthContext } from "../context/AuthContext";
 import faker from "faker";
 import firebase from "firebase";
 import "firebase/firestore";
-import { Button } from "react-bootstrap";
+import { Button, Col, Row, Alert } from "react-bootstrap";
 import { v4 as uuid } from "uuid";
 import { toast } from "react-toastify";
 
@@ -50,10 +50,16 @@ const UserData = () => {
 		if (authState.user) {
 			return (
 				<div>
-					<p>Logged in as {authState.user.displayName}</p>
-					<Button onClick={addItemToDb} autoFocus>
-						Add a Random Item
-					</Button>
+					<Col>
+						<Row>
+							<Alert variant="warning">Logged in as {authState.user.displayName}</Alert>
+						</Row>
+						<Row>
+							<Button onClick={addItemToDb} autoFocus>
+								Add a Random Item
+							</Button>
+						</Row>
+					</Col>
 					<br />
 					{dbItems &&
 						dbItems.map((item) => {
