@@ -19,13 +19,16 @@ const UserData = () => {
 		});
 	};
 
+	let unsubscribe;
 	if (authState.user) {
-		db.where("uid", "==", authState.user.uid).onSnapshot((querySnapshot) => {
+		unsubscribe = db.where("uid", "==", authState.user.uid).onSnapshot((querySnapshot) => {
 			const items = querySnapshot.docs.map((doc) => {
 				return doc.data().name;
 			});
 			setDbItems(items);
 		});
+	} else {
+		unsubscribe && unsubscribe();
 	}
 
 	const render = () => {
